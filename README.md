@@ -1,4 +1,5 @@
-# SnapShary
+# SyncOn
+
 Under development
 
 Have u ever gone on outings with friends where everyone had some snaps of the trip but forgot to sync with each other? This app solves that problem
