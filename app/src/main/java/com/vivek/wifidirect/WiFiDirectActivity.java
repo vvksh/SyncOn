@@ -266,4 +266,9 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         }
 
     }
+
+
+    public void startSession(View v){
+        startService(new Intent(getBaseContext(), PhotoService.class));
+    }
 }

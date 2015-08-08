@@ -55,7 +55,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     protected static final int CHOOSE_FILE_RESULT_CODE = 20;
     private View mContentView = null;
     private WifiP2pDevice device;
-    private WifiP2pInfo info;
+    public static WifiP2pInfo info;
     ProgressDialog progressDialog = null;
 
     @Override
@@ -101,16 +101,18 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                     }
                 });
 
-        mContentView.findViewById(R.id.btn_start_client).setOnClickListener(
+        mContentView.findViewById(R.id.btn_start_client);
+        mContentView.setOnClickListener(
                 new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
-                        // Allow user to pick an image from Gallery or other
-                        // registered apps
-                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                        intent.setType("image/*");
-                        startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
+                        //start a gallery listener service
+//                        Intent intent = new Intent(getActivity(), PhotoService.class);
+//                        intent.pu
+
+                        startActivity(new Intent(getActivity(), SessionActivity.class));
+
                     }
                 });
 
@@ -123,17 +125,23 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         // User has picked an image. Transfer it to group owner i.e peer using
         // FileTransferService.
         Uri uri = data.getData();
+//        Log.d("URI", uri);
+
         TextView statusText = (TextView) mContentView.findViewById(R.id.status_text);
         statusText.setText("Sending: " + uri);
-        Log.d(WiFiDirectActivity.TAG, "Intent----------- " + uri);
+        Log.d("DEBUXX", "Intent----------- " + uri);
+
         Intent serviceIntent = new Intent(getActivity(), FileTransferService.class);
         serviceIntent.setAction(FileTransferService.ACTION_SEND_FILE);
         serviceIntent.putExtra(FileTransferService.EXTRAS_FILE_PATH, uri.toString());
         serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_ADDRESS,
                 info.groupOwnerAddress.getHostAddress());
         serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_PORT, 8988);
+//        Log.d(TAG, )
         getActivity().startService(serviceIntent);
     }
+
+
 
     @Override
     public void onConnectionInfoAvailable(final WifiP2pInfo info) {

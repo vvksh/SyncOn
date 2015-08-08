@@ -27,6 +27,7 @@ public class FileTransferService extends IntentService {
     public static final String EXTRAS_FILE_PATH = "file_url";
     public static final String EXTRAS_GROUP_OWNER_ADDRESS = "go_host";
     public static final String EXTRAS_GROUP_OWNER_PORT = "go_port";
+    public static final String TAG = "DEBUXX";
 
     public FileTransferService(String name) {
         super(name);
@@ -34,6 +35,8 @@ public class FileTransferService extends IntentService {
 
     public FileTransferService() {
         super("FileTransferService");
+        Log.d(TAG, "staring file transfer");
+
     }
 
     /*
@@ -42,6 +45,7 @@ public class FileTransferService extends IntentService {
      */
     @Override
     protected void onHandleIntent(Intent intent) {
+        Log.d(TAG,"handling the intent");
 
         Context context = getApplicationContext();
         if (intent.getAction().equals(ACTION_SEND_FILE)) {

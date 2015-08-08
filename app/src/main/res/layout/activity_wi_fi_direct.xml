@@ -16,12 +16,23 @@
             android:layout_height="@dimen/phone_list_height">
             <!-- Preview: layout=@layout/row_devices -->
         </fragment>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal" />
+
         <fragment
             class="com.vivek.wifidirect.DeviceDetailFragment"
             android:id="@+id/frag_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <!-- Preview: layout=@layout/device_detail -->
+
+
         </fragment>
+
     </LinearLayout>
 </LinearLayout>
