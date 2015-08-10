@@ -107,11 +107,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
                     @Override
                     public void onClick(View v) {
-                        //start a gallery listener service
-//                        Intent intent = new Intent(getActivity(), PhotoService.class);
-//                        intent.pu
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("image/*");
+                        startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
 
-                        startActivity(new Intent(getActivity(), SessionActivity.class));
+//                        startActivity(new Intent(getActivity(), SessionActivity.class));
 
                     }
                 });
